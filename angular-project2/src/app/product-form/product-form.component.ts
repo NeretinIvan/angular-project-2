@@ -34,12 +34,23 @@ export class ProductFormComponent {
     "Electronics"
   ]
 
-  public generateID = () => {
-    let generatedID = Math.floor(Math.random() * 10000).toString();
+  public generateID(): void {
+    let generatedID = this.generateRandomString(16);
     this.productForm.controls["id"].setValue(generatedID);
   }
 
-  public submitForm = () => {
+  private generateRandomString(length: number): string {
+    let result:string = "";
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    
+    for (let i = 0; i < length; i++) {
+      result += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+    }
+    
+    return result;
+  }
+
+  public submitForm(): void {
     if (this.productForm.invalid) {
       alert("Form is invalid!");
     }
