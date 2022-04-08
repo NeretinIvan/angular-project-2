@@ -1,0 +1,32 @@
+<h1>Product form</h1>
+
+<form [formGroup]="productForm">
+
+    <div class="field">
+        <label for="name">Product name: </label>
+        <span *ngIf="productForm.controls['name'].errors !== null" class="validationError">Invalid name</span>
+        <input id="name" type="text" formControlName="name">
+    </div>
+
+    <div class="field">
+        <label for="price">Price: </label>
+        <span *ngIf="productForm.controls['price'].errors !== null" class="validationError">Invalid price</span>
+        <input id="price" type="number" formControlName="price">
+    </div>
+
+    <div class="field">
+        <label for="ProductId">Product ID: </label>
+        <span *ngIf="productForm.controls['id'].errors !== null" class="validationError">Need to generate ID</span>
+        <input id="ProductId" type="text" formControlName="id" readonly>
+    </div>
+    <button type="button" (click)="generateID()">Generate ID</button>
+
+    <div class="field">
+        <label for="category">Category: </label>
+        <select id="category" formControlName="categories" multiple>
+            <option *ngFor="let option of categoryOptions">{{option}}</option>
+        </select>
+    </div>
+
+    <button type="submit" (click)="submitForm()">Submit</button>
+</form>
